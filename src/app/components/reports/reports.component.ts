@@ -18,7 +18,6 @@ export class ReportsComponent {
     private notification: NotificationService,
     private reportService: ReportService
   ) {
-    // Inicializa el formulario reactivo
     this.reportForm = this.fb.group({
       start_date: [null],
       end_date: [null],

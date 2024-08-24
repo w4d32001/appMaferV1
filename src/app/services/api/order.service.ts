@@ -22,4 +22,12 @@ export class OrderService {
   updateStatus(id: number):  Observable<{ message: string }>{
     return this.http.put<{ message: string }>(`${this.url}/orderPay/${id}`, []);
   }
+
+  updateImage(id: number, image: string): Observable<{ message: string }> {
+    const payment = {
+      id: id,
+      image: image
+    }
+    return this.http.put<{ message: string }>(`${this.url}/updateImage/${id}`, payment);
+}
 }

@@ -8,11 +8,12 @@ import { FormsModule } from '@angular/forms';
 import { faArrowDown } from '@fortawesome/free-solid-svg-icons';
 import { NotificationService } from '../../services/helpers/notification-service.service';
 import Swal from 'sweetalert2';
+import { PaymentReceiptModalComponent } from '../../components/payment-receipt-modal/payment-receipt-modal.component';
 
 @Component({
   selector: 'app-order',
   standalone: true,
-  imports: [FontAwesomeModule, LoaderComponent, CommonModule, FormsModule],
+  imports: [FontAwesomeModule, LoaderComponent, CommonModule, FormsModule, PaymentReceiptModalComponent],
   templateUrl: './order.component.html',
   styleUrl: './order.component.css'
 })
@@ -25,6 +26,9 @@ export class OrderComponent {
   faArrowDown = faArrowDown
   isLoading: boolean = false
   private intervalId: any;
+  isModalOpen = false;
+  selectedOrderId: number | null = null;
+
 
   ngOnInit(){
     this.loadInitialOrders()
@@ -90,6 +94,16 @@ export class OrderComponent {
 
   onSearch(){
 
+  }
+
+  onSubmitImage(id: number){
+    this.selectedOrderId = id;
+    this.isModalOpen = true;
+  }
+
+  closeModal(): void {
+    this.isModalOpen = false;
+    this.selectedOrderId = null; 
   }
 
 }
